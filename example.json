@@ -1,0 +1,21 @@
+{
+	"apiName" : "Test.API.Example",
+	"apiContext" : "/test/example/v1",
+	"resources" : [
+		{
+			"methods" : [
+				"GET",
+				"POST"
+			],
+			"urlPath": "/resource1",
+			"endpoint" : "http://example.com"
+		},
+		{
+			"methods" : [
+				"POST"
+			],
+			"urlPath": "/resource2",
+			"endpoint" : "conf:/Endpoints/ExampleEndpoint" 
+		}
+	]
+}
