@@ -42,7 +42,7 @@ Script to create API definition for WSO2 ESB
 	      </outSequence>
 	      <faultSequence />
 	    </resource>
-	    <resource methods="POST" uri-template="/resource1">
+	    <resource methods="POST" uri-template="/resource2">
 	      <inSequence>
 	        <send>
 	          <endpoint key="conf:/Endpoints/ExampleEndpoint" />
