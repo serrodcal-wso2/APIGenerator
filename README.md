@@ -1,6 +1,6 @@
 # APIGenerator
 
-	Script to create API definition for WSO2 ESB
+Script to create API definition for WSO2 ESB
 
 ## JSON Example
 
