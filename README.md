@@ -37,7 +37,7 @@ Script to create API definition for WSO2 ESB
 	      </inSequence>
 	      <outSequence>
 	         <send />
-	      </outSequence>?
+	      </outSequence>
 	      <faultSequence />
 	    </resource>
 	    <resource methods="POST" uri-template="/resource1">
@@ -48,7 +48,7 @@ Script to create API definition for WSO2 ESB
 	      </inSequence>
 	      <outSequence>
 	         <send />
-	      </outSequence>?
+	      </outSequence>
 	      <faultSequence />
 	    </resource>
 	</api>
