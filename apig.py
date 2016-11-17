@@ -27,17 +27,17 @@ def create_resource_from_specification(resource):
     
     methods_statement = get_methods(resource['methods'])
 
-    initial_resource_statement = "<resource methods=\"" + methods_statement + "\" uri-template=\"" + resource['urlPath'] + "\">"
+    initial_resource_statement = "  <resource methods=\"" + methods_statement + "\" uri-template=\"" + resource['urlPath'] + "\">\n"
     result.append(initial_resource_statement)
 
     resource_content = ""
     if "conf" in resource['endpoint']:
-        resource_content = "<inSequence><send><endpoint key=\"" + resource['endpoint'] + "\" /></send></inSequence><outSequence><send /><outSequence><faultSequence/>"
+        resource_content = "    <inSequence>\n      <send>\n        <endpoint key=\"" + resource['endpoint'] + "\" />\n      </send>\n    </inSequence>\n    <outSequence>\n      <send />\n    <outSequence>\n    <faultSequence/>\n"
     else:
-        resource_content = "<inSequence><send><endpoint uri=\"" + resource['endpoint'] + "\" /></send></inSequence><outSequence><send /><outSequence><faultSequence/>"
+        resource_content = "    <inSequence>\n      <send>\n        <endpoint uri=\"" + resource['endpoint'] + "\" />\n      </send>\n    </inSequence>\n    <outSequence>\n      <send />\n    <outSequence>\n    <faultSequence/>\n"
     result.append(resource_content)
 
-    result.append("</resource>")
+    result.append("  </resource>\n")
 
     result_string = get_string_from_list(result)
 
@@ -46,7 +46,7 @@ def create_resource_from_specification(resource):
 def create_api_from_specification(api_specification):
     result = list()
 
-    initial_api_statement = "<api name=\"" + api_specification['apiName'] + "\" context=\"" + api_specification['apiContext'] + "\">"
+    initial_api_statement = "<api name=\"" + api_specification['apiName'] + "\" context=\"" + api_specification['apiContext'] + "\">\n"
     result.append(initial_api_statement)
 
     for resource in api_specification['resources']:
@@ -63,7 +63,7 @@ def generate_result_file(api_result):
     print("File has been created!") #TODO
     api_string = get_string_from_list(api_result)
     text_file = open("output.xml", "w")
-    text_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>")
+    text_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
     text_file.write(api_string)
     text_file.close()
 
