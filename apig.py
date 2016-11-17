@@ -8,7 +8,13 @@ def get_dict_from_json_file(file):
     return json.loads(json_data)
 
 def get_methods(methods):
-    return "GET POST"
+    result = ""
+    for method in methods:
+        if method == methods[-1]:
+            result += method
+        else:
+            result += method + " "
+    return result
 
 def get_string_from_list(list):
     result = ""
