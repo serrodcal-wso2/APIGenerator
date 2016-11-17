@@ -33,23 +33,35 @@ Script to create API definition for WSO2 ESB
 	<api name="Test.API.Example" context="/test/example/v1">
 	    <resource methods="GET POST" uri-template="/resource1">
 	      <inSequence>
+	      	<log category="DEBUG">
+	      		<property name="*** INSIDE" value="[API] /test/example/v1/resource1"/>
+	      	</log>
 	        <send>
 	          <endpoint uri="http://example.com" />
 	        </send>
 	      </inSequence>
 	      <outSequence>
-	         <send />
+	      	<log category="DEBUG">
+	      		<property name="*** OUTSIDE" value="[API] /test/example/v1/resource1"/>
+	      	</log>
+	        <send />
 	      </outSequence>
 	      <faultSequence />
 	    </resource>
 	    <resource methods="POST" uri-template="/resource2">
 	      <inSequence>
+	      	<log category="DEBUG">
+	      		<property name="*** INSIDE" value="[API] /test/example/v1/resource2"/>
+	      	</log>
 	        <send>
 	          <endpoint key="conf:/Endpoints/ExampleEndpoint" />
 	        </send>
 	      </inSequence>
 	      <outSequence>
-	         <send />
+	      	<log category="DEBUG">
+	      		<property name="*** OUTSIDE" value="[API] /test/example/v1/resource2"/>
+	      	</log>
+	        <send />
 	      </outSequence>
 	      <faultSequence />
 	    </resource>
