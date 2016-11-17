@@ -8,10 +8,21 @@ def get_dict_from_json_file(file):
     return json.loads(json_data)
 
 def create_api_from_specification(api_specification):
-    return list() #TODO
+    result = list()
+
+    initial_api_statement = "<api name=\"" + api_specification['apiName'] + "\" context=\"" + api_specification['apiContext'] + "\">"
+    result.append(initial_api_statement)
+
+    for resource in api_specification['resources']:
+        print(resource)
+    
+    result.append("</api>")
+
+    return result
 
 def generate_result_file(api_result):
     print("File has been created!") #TODO
+    print(api_result)
 
 if __name__ == '__main__':
     if len(sys.argv)>1:
