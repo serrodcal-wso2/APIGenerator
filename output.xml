@@ -14,7 +14,7 @@
         <property name="*** INSIDE" value="[API]/test/example/v1/resource1 "/>
       </log>
       <send />
-    <outSequence>
+    </outSequence>
     <faultSequence/>
   </resource>
   <resource methods="POST" url-mapping="/resource2">
@@ -31,7 +31,7 @@
         <property name="*** INSIDE" value="[API]/test/example/v1/resource2 "/>
       </log>
       <send />
-    <outSequence>
+    </outSequence>
     <faultSequence/>
   </resource>
   <resource methods="PUT" uri-template="/resource3/{id}">
@@ -48,7 +48,7 @@
         <property name="*** INSIDE" value="[API]/test/example/v1/resource3/{id} "/>
       </log>
       <send />
-    <outSequence>
+    </outSequence>
     <faultSequence/>
   </resource>
 </api>
