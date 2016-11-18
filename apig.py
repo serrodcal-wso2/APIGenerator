@@ -9,8 +9,9 @@ def get_dict_from_json_file(file):
 
 def get_methods(methods):
     result = ""
+    last = methods[-1]
     for method in methods:
-        if method == methods[-1]:
+        if method == last:
             result += method
         else:
             result += method + " "
@@ -22,7 +23,7 @@ def get_string_from_list(list):
         result += item
     return result
 
-def create_resource_from_specification(resource):
+def create_resource_from_specification(context, resource):
     result = list()
     
     methods_statement = get_methods(resource['methods'])
@@ -30,11 +31,14 @@ def create_resource_from_specification(resource):
     initial_resource_statement = "  <resource methods=\"" + methods_statement + "\" uri-template=\"" + resource['urlPath'] + "\">\n"
     result.append(initial_resource_statement)
 
-    resource_content = ""
+    resource_content = "    <inSequence>\n      <log category=\"DEBUG\">\n        <property name=\"*** INSIDE\" value=\"[API]" + context + resource['urlPath'] + " \"/>\n      </log>\n"
     if "conf" in resource['endpoint']:
-        resource_content = "    <inSequence>\n      <send>\n        <endpoint key=\"" + resource['endpoint'] + "\" />\n      </send>\n    </inSequence>\n    <outSequence>\n      <send />\n    <outSequence>\n    <faultSequence/>\n"
+        resource_content += "      <send>\n        <endpoint key=\"" + resource['endpoint'] + "\" />\n      </send>\n    </inSequence>\n"
     else:
-        resource_content = "    <inSequence>\n      <send>\n        <endpoint uri=\"" + resource['endpoint'] + "\" />\n      </send>\n    </inSequence>\n    <outSequence>\n      <send />\n    <outSequence>\n    <faultSequence/>\n"
+        resource_content += "      <send>\n        <endpoint uri=\"" + resource['endpoint'] + "\" />\n      </send>\n    </inSequence>\n"
+    
+    resource_content += "    <outSequence>\n      <log category=\"DEBUG\">\n        <property name=\"*** INSIDE\" value=\"[API]" + context + resource['urlPath'] + " \"/>\n      </log>\n      <send />\n    <outSequence>\n    <faultSequence/>\n"
+
     result.append(resource_content)
 
     result.append("  </resource>\n")
@@ -50,7 +54,7 @@ def create_api_from_specification(api_specification):
     result.append(initial_api_statement)
 
     for resource in api_specification['resources']:
-        resource_result = create_resource_from_specification(resource)
+        resource_result = create_resource_from_specification(api_specification['apiContext'],resource)
         result.append(resource_result)
     
     result.append("</api>")
