@@ -44,7 +44,9 @@ Script to create API definition for WSO2 ESB
 	      		<property name="*** INSIDE" value="[API] /test/example/v1/resource1"/>
 	      	</log>
 	        <send>
-	          <endpoint uri="http://example.com" />
+	          <endpoint>
+		          <address uri="http://example.com"/>
+		        </endpoint>
 	        </send>
 	      </inSequence>
 	      <outSequence>
