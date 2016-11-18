@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <api name="Test.API.Example" context="/test/example/v1">
-  <resource methods="GET POST" uri-template="/resource1">
+  <resource methods="GET POST" url-mapping="/resource1">
     <inSequence>
       <log category="DEBUG">
         <property name="*** INSIDE" value="[API]/test/example/v1/resource1 "/>
@@ -17,7 +17,7 @@
     <outSequence>
     <faultSequence/>
   </resource>
-  <resource methods="POST" uri-template="/resource2">
+  <resource methods="POST" url-mapping="/resource2">
     <inSequence>
       <log category="DEBUG">
         <property name="*** INSIDE" value="[API]/test/example/v1/resource2 "/>
@@ -29,6 +29,23 @@
     <outSequence>
       <log category="DEBUG">
         <property name="*** INSIDE" value="[API]/test/example/v1/resource2 "/>
+      </log>
+      <send />
+    <outSequence>
+    <faultSequence/>
+  </resource>
+  <resource methods="PUT" uri-template="/resource3/{id}">
+    <inSequence>
+      <log category="DEBUG">
+        <property name="*** INSIDE" value="[API]/test/example/v1/resource3/{id} "/>
+      </log>
+      <send>
+        <endpoint key="conf:/Endpoints/ExampleEndpoint2" />
+      </send>
+    </inSequence>
+    <outSequence>
+      <log category="DEBUG">
+        <property name="*** INSIDE" value="[API]/test/example/v1/resource3/{id} "/>
       </log>
       <send />
     <outSequence>

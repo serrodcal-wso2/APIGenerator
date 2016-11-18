@@ -16,6 +16,13 @@
 			],
 			"urlPath": "/resource2",
 			"endpoint" : "conf:/Endpoints/ExampleEndpoint" 
+		},
+		{
+			"methods" : [
+				"PUT"
+			],
+			"urlPath": "/resource3/{id}",
+			"endpoint" : "conf:/Endpoints/ExampleEndpoint2" 
 		}
 	]
 }
