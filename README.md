@@ -86,7 +86,7 @@ Script to create API definition for WSO2 ESB
 		        <property name="*** INSIDE" value="[API]/test/example/v1/resource3/{id} "/>
 		      </log>
 		      <send />
-		    <outSequence>
+		    </outSequence>
 		    <faultSequence/>
 		</resource>
 	</api>
