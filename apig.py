@@ -1,7 +1,7 @@
-import sys, os, re, json
+import sys, os, json
 
 def existsFile(file):
-    return True #TODO
+    return os.path.isfile(file)
 
 def get_dict_from_json_file(file):
     json_data = open(file).read()
