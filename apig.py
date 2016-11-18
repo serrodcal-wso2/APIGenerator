@@ -28,7 +28,10 @@ def create_resource_from_specification(context, resource):
     
     methods_statement = get_methods(resource['methods'])
 
-    initial_resource_statement = "  <resource methods=\"" + methods_statement + "\" uri-template=\"" + resource['urlPath'] + "\">\n"
+    if ("{" in context) or ("{" in resource['urlPath']):
+        initial_resource_statement = "  <resource methods=\"" + methods_statement + "\" uri-template=\"" + resource['urlPath'] + "\">\n"
+    else:
+        initial_resource_statement = "  <resource methods=\"" + methods_statement + "\" url-mapping=\"" + resource['urlPath'] + "\">\n"
     result.append(initial_resource_statement)
 
     resource_content = "    <inSequence>\n      <log category=\"DEBUG\">\n        <property name=\"*** INSIDE\" value=\"[API]" + context + resource['urlPath'] + " \"/>\n      </log>\n"
