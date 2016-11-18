@@ -24,6 +24,13 @@ Script to create API definition for WSO2 ESB
 				],
 				"urlPath": "/resource2",
 				"endpoint" : "conf:/Endpoints/ExampleEndpoint" 
+			},
+			{
+				"methods" : [
+					"PUT"
+				],
+				"urlPath": "/resource3/{id}",
+				"endpoint" : "conf:/Endpoints/ExampleEndpoint2" 
 			}
 		]
 	}
@@ -65,4 +72,21 @@ Script to create API definition for WSO2 ESB
 	      </outSequence>
 	      <faultSequence />
 	    </resource>
+	    <resource methods="PUT" uri-template="/resource3/{id}">
+		    <inSequence>
+		      <log category="DEBUG">
+		        <property name="*** INSIDE" value="[API]/test/example/v1/resource3/{id} "/>
+		      </log>
+		      <send>
+		        <endpoint key="conf:/Endpoints/ExampleEndpoint2" />
+		      </send>
+		    </inSequence>
+		    <outSequence>
+		      <log category="DEBUG">
+		        <property name="*** INSIDE" value="[API]/test/example/v1/resource3/{id} "/>
+		      </log>
+		      <send />
+		    <outSequence>
+		    <faultSequence/>
+		</resource>
 	</api>
