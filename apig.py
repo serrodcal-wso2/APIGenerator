@@ -40,7 +40,7 @@ def create_resource_from_specification(context, resource):
     else:
         resource_content += "      <send>\n        <endpoint uri=\"" + resource['endpoint'] + "\" />\n      </send>\n    </inSequence>\n"
     
-    resource_content += "    <outSequence>\n      <log category=\"DEBUG\">\n        <property name=\"*** INSIDE\" value=\"[API]" + context + resource['urlPath'] + " \"/>\n      </log>\n      <send />\n    <outSequence>\n    <faultSequence/>\n"
+    resource_content += "    <outSequence>\n      <log category=\"DEBUG\">\n        <property name=\"*** INSIDE\" value=\"[API]" + context + resource['urlPath'] + " \"/>\n      </log>\n      <send />\n    </outSequence>\n    <faultSequence/>\n"
 
     result.append(resource_content)
 
